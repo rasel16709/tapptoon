@@ -79,7 +79,7 @@ export function HeroCarousel({ items }: { items: HeroItem[] }) {
             >
               {isActive && (
                 <>
-                  <div className="flex flex-col justify-center space-y-6 text-white min-h-[380px] md:min-h-[420px]">
+                  <div className="flex flex-col justify-center space-y-6 text-white min-h-[280px] md:min-h-[420px]">
                     <div className="space-y-4">
                       <div className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1 text-sm font-semibold backdrop-blur-sm">
                         <Sparkles className="w-4 h-4 mr-1.5" />

@@ -217,8 +217,38 @@ function SectionShell({
 }
 
 export default function Home() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.tappytoon.org';
+
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Tappytoon.org',
+    url: siteUrl,
+    description: 'Read the latest and most popular manhwa, webtoons, and comics for free.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/popular?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
+  const orgJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Tappytoon.org',
+    url: siteUrl,
+    logo: `${siteUrl}/tapytoonlogo.svg`,
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteJsonLd, orgJsonLd]) }}
+      />
       <Suspense fallback={null}>
         <FeaturedSection />
       </Suspense>

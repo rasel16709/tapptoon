@@ -112,9 +112,11 @@ export function Navbar() {
               <SheetContent side="left" className="w-[300px] sm:w-[350px] p-6 bg-white">
                 <SheetHeader className="text-left mb-8">
                   <SheetTitle className="font-black text-2xl text-primary tracking-tighter">
-                    <img 
+                    <Image 
                       src="/tapytoonlogo.svg" 
                       alt="Tappytoon.org Logo" 
+                      width={120}
+                      height={32}
                       className="h-8 w-auto object-contain" 
                     />
                   </SheetTitle>
@@ -140,10 +142,13 @@ export function Navbar() {
           </div>
 
           <Link href="/" className="flex items-center space-x-2">
-            <img 
+            <Image 
               src="/tapytoonlogo.svg" 
               alt="Tappytoon.org Logo" 
+              width={120}
+              height={32}
               className="h-8 w-auto object-contain" 
+              priority
             />
           </Link>
         </div>
@@ -174,7 +179,7 @@ export function Navbar() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onFocus={() => query.trim() !== '' && results.length > 0 && setIsOpen(true)}
-              className="pl-9 pr-8 w-[140px] sm:w-[200px] md:w-[300px] bg-gray-100 border-transparent focus-visible:ring-primary rounded-full h-9 transition-all"
+              className="pl-9 pr-8 w-[160px] sm:w-[200px] md:w-[300px] bg-gray-100 border-transparent focus-visible:ring-primary rounded-full h-9 transition-all"
             />
             {query && (
               <button 

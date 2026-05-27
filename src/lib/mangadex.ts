@@ -234,7 +234,7 @@ export async function getMangaDetails(mangaId: string): Promise<MangaDexManga | 
     params.append('includes[]', 'artist');
 
     const response = await rateLimitedFetch(`${BASE_URL}/manga/${mangaId}?${params}`, {
-      next: { revalidate: 600 },
+      next: { revalidate: 1200 },
     });
     const result = await response.json();
     if (!result.data) return null;
@@ -381,7 +381,7 @@ export async function getMangaByTags(
 
 export async function getAllTags(): Promise<MangaDexTag[]> {
   const response = await rateLimitedFetch(`${BASE_URL}/manga/tag`, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 86400 },
   });
   const result = await response.json();
   return (result.data || []).map((t: any) => ({

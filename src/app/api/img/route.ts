@@ -8,7 +8,7 @@ import { type NextRequest } from 'next/server';
  * `next: { revalidate }` plus the response Cache-Control header.
  */
 
-const ONE_DAY = 60 * 60 * 24;
+const ONE_WEEK = 60 * 60 * 24 * 7;
 
 export async function GET(request: NextRequest) {
   const encoded = request.nextUrl.searchParams.get('s');
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
         'Referer': 'https://mangadex.org/',
       },
       // Cache upstream image responses for a day at the data-cache layer
-      next: { revalidate: ONE_DAY },
+      next: { revalidate: ONE_WEEK },
     });
 
     if (!imageResponse.ok) {
@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
       status: 200,
       headers: {
         'Content-Type': contentType,
-        'Cache-Control': `public, max-age=${ONE_DAY}, s-maxage=${ONE_DAY}, immutable`,
+        'Cache-Control': `public, max-age=${ONE_WEEK}, s-maxage=${ONE_WEEK}, stale-while-revalidate=86400, immutable`,
         'Access-Control-Allow-Origin': '*',
       },
     });

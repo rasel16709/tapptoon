@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   description: 'Discover the most popular and trending manhwa and manga on Tappytoon.org. Solo Leveling, Tower of God, and thousands more - all free to read.',
   keywords: 'popular manhwa, popular manga, trending webtoon, best manhwa, top manga, most read',
   alternates: { canonical: '/popular' },
+  openGraph: {
+    title: 'Most Popular Manhwa & Manga - Tappytoon.org',
+    description: 'Discover the most popular and trending manhwa and manga. Updated in real-time.',
+    url: '/popular',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Most Popular Manhwa & Manga - Tappytoon.org',
+    description: 'Discover the most popular and trending manhwa and manga. Updated in real-time.',
+  },
 };
 
 export default async function PopularPage() {
@@ -20,8 +31,29 @@ export default async function PopularPage() {
     console.error('Error fetching popular manga:', error);
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.tappytoon.org';
+
+  const itemListJsonLd = popularManga.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Most Popular Manhwa & Manga',
+    numberOfItems: popularManga.length,
+    itemListElement: popularManga.slice(0, 20).map((manga: any, idx: number) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      url: `${siteUrl}/manhwa/${manga.id}`,
+      name: manga.title,
+    })),
+  } : null;
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      {itemListJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        />
+      )}
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-12">

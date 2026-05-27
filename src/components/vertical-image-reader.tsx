@@ -31,10 +31,13 @@ export function VerticalImageReader({ imageUrls }: { imageUrls: string[] }) {
       className="flex flex-col items-center w-full bg-gray-50 min-h-screen select-none relative"
       onContextMenu={(e) => e.preventDefault()} // Block mouse right-clicking
     >
-      {/* Transparent security overlay extending across the reader to block dragging, right-click, or saving */}
+      {/* CSS-only security overlay — does NOT block touch scrolling */}
       <div 
-        className="absolute inset-0 z-40 bg-transparent cursor-default"
-        style={{ pointerEvents: 'auto' }}
+        className="absolute inset-0 z-40 bg-transparent cursor-default pointer-events-none"
+        style={{ 
+          WebkitTouchCallout: 'none',
+          userSelect: 'none',
+        }}
         onDragStart={(e) => e.preventDefault()}
       />
 
