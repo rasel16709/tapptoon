@@ -6,7 +6,7 @@ import { Play, BookOpen, User, Calendar, Tag } from 'lucide-react';
 import type { Metadata } from 'next';
 import { getMangaDetails, getMangaChapters } from '@/lib/mangadex';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://tappytoon.org';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.tappytoon.org';
 
 export async function generateMetadata({
   params,
