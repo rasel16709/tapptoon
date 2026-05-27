@@ -23,7 +23,7 @@ const STATIC_GENRE_SLUGS = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tappytoon.org';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.tappytoon.org';
 
   const staticUrls: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'always', priority: 1 },
